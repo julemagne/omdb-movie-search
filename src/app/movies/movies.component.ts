@@ -12,7 +12,10 @@ import { MoviesService } from './movies.service';
 })
 export class MoviesComponent implements OnInit {
   
-  movie: Object;
+  message: string;
+  movie: any;
+  movieFound: boolean;
+  moviePoster: string;
 
   constructor(    
     private moviesService: MoviesService,
@@ -21,9 +24,22 @@ export class MoviesComponent implements OnInit {
   ngOnInit() {
   }
 
-  searchMovies(): void {
-    this.moviesService.search('').subscribe(res => this.movie = res);
-    console.log(this.movie)
+  searchMovies(term): void {
+    this.moviesService.search(term).subscribe(res => {
+      if (res.Response === 'True') {
+        this.movie = res
+        if (this.movie.Poster != 'N/A') {
+          this.moviePoster = this.movie.Poster
+        } else {
+          this.moviePoster = ''
+        }
+        this.movieFound = true
+      } else {
+        this.movieFound = false
+        this.message = 'No movie was found that matched your search.'
+      }
+    });
+    console.log(term, this.movie)
   }
 
 }
