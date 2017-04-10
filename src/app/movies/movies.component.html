@@ -1,3 +1,11 @@
-<p>
-  movies works!
-</p>
+<div id="search-component">
+  <h4>Movie Search</h4>
+  <input id="search-box" />
+  <button type="button" (click)="searchMovies()">Search</button>
+  <div *ngIf="movie">
+    <div class="search-result">
+      {{movie.Title}}, {{movie.Year}} Rated {{movie.Rated}}
+    </div>
+    <img src="{{movie.Poster}}" alt="{{movie.Title}}">
+  </div>
+</div>
