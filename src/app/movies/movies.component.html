@@ -1,6 +1,6 @@
 <div class="container" id="search-component">
   
-  <label for="search-box">
+  <label for="search-box" class="search-label">
     Movie Search
   </label>
   
@@ -8,34 +8,36 @@
     <input class="form-control" placeholder="Search..." #searchBox id="search-box" autofocus="true"/>
     <span class="input-group-btn">
       <button class="btn btn-danger" type="submit" (click)="searchMovies(searchBox.value)">
-        Search
+        <span class="glyphicon glyphicon-search white" aria-hidden="true"></span>
       </button>
     </span>
   </div>
 
   <div *ngIf="movieFound">
 
-  <div class="media">
-    <div class="media-left">
-      <a href="#">
-        <img class="media-object" src="{{moviePoster}}" alt="{{movie.Title}}">
-      </a>
+    <div class="media movie-media">
+      <div class="media-left">
+        <a href="#">
+          <img class="media-object" src="{{moviePoster}}" alt="{{movie.Title}}">
+        </a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">
+          {{movie.Title}}, {{movie.Year}} <br>
+          Rated {{movie.Rated}} (Country: {{movie.Country}})
+        </h4>
+        <p>
+          Summary: {{movie.Plot}}
+        </p>
+        <p>
+          Genre: {{movie.Genre}}
+        </p>
+        <p>
+          Starring: {{movie.Actors}}
+        </p>
+      </div>
     </div>
-    <div class="media-body">
-      <h4 class="media-heading">
-        {{movie.Title}}, {{movie.Year}} <br>
-        Rated {{movie.Rated}} (Country: {{movie.Country}})
-      </h4>
-      <p>
-        Summary: {{movie.Plot}}
-      </p>
-      <p>
-        Genre: {{movie.Genre}}
-      </p>
-      <p>
-        Starring: {{movie.Actors}}
-      </p>
-    </div>
+
   </div>
 
   <div *ngIf="!movieFound">
