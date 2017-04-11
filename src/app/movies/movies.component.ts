@@ -24,7 +24,7 @@ export class MoviesComponent implements OnInit {
   ngOnInit() {
   }
 
-  searchMovies(term): void {
+  searchMovies(term: string): void {
     this.moviesService.search(term).subscribe(res => {
       if (res.Response === 'True') {
         this.movie = res

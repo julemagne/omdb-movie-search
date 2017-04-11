@@ -10,9 +10,11 @@ export class MoviesService {
 
   constructor(private http: Http) { }
 
-  search(term): Observable<any> {
+  search(term: string): Observable<any> {
     return this.http.get(this.omdb + term)
-      .map(response => response.json() as string)
+      .map(response => {
+        return response.json() as string
+    })
   }
 
 }
